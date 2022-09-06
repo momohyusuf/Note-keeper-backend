@@ -1,0 +1,188 @@
+openapi: 3.0.0
+info:
+  title: Note Keeper Api
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://note-saver-api.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /notes:
+    get:
+      tags:
+        - Notes
+      summary: Get All Notes
+      operationId: GetAllNotes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    post:
+      tags:
+        - Notes
+      summary: Create Note
+      operationId: CreateNote
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /notes/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The note ID
+    get:
+      tags:
+        - Notes
+      summary: Get Single Note
+      operationId: GetSingleNote
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    patch:
+      tags:
+        - Notes
+      summary: Edit Note
+      operationId: EditNote
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - Notes
+      summary: Delete Note
+      operationId: DeleteNote
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /authorize/register:
+    post:
+      tags:
+        - auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/RegisterUserRequest'
+                - example:
+                    firstName: Momoh
+                    lastName: Yusuf
+                    password: stark1215
+                    email: yusufmomoh11@gmail.com
+            example:
+              firstName: Momoh
+              lastName: Yusuf
+              password: stark1215
+              email: yusufmomoh11@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /authorize/login:
+    post:
+      tags:
+        - auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/LoginUserRequest'
+                - example:
+                    email: yusufmomoh6@gmail.com
+                    password: stark121598
+            example:
+              email: yusufmomoh6@gmail.com
+              password: stark121598
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+        - firstName
+        - lastName
+        - password
+        - email
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        firstName: Momoh
+        lastName: Yusuf
+        password: stark1215
+        email: yusufmomoh11@gmail.com
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: yusufmomoh6@gmail.com
+        password: stark121598
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Notes
+  - name: auth
+    description: ''
